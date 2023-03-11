@@ -5,4 +5,4 @@ Team members:
 2. Sam Herman
 3. Margaret Potagal
 4. Connor Zawacki
-5.
+5. Daniel Olevsky
