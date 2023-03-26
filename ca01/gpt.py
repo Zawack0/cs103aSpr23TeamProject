@@ -42,7 +42,7 @@ class GPT():
             temperature=0.8,
         )
 
-    def SamResponse(self,prompt):
+    def samResponse(self,prompt):
         ''' Generate a GPT response '''
         completion = openai.Completion.create(
             engine=self.model_engine,
