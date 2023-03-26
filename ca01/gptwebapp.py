@@ -33,10 +33,40 @@ def index():
     ''' display a link to the general query page '''
     print('processing / route')
     return f'''
-        <h1>GPT Demo</h1>
+        <h1>chefGPT</h1>
+        <a href="{url_for('connor')}">Connor's GPT prompt: Make a recepie to fit your needs</a>
         <a href="{url_for('gptdemo')}">Ask questions to GPT</a>
     '''
 
+
+@app.route('/connor', methods=['Get', 'POST'])
+def connor():
+    ''' Connor's prompt engineering page, work in progress
+    '''
+    if request.method == 'POST':
+        prompt = request.form['prompt']
+        passalong = "Give me a recepie that meets the following parameters: " + prompt
+        answer = gptAPI.connorResponse(passalong)
+        return f'''
+        <h1>Connor's GPT Demo</h1>
+        <pre style="bgcolor:yellow">{prompt}</pre>
+        <hr>
+        Here is the answer in text mode:
+        <div style="border:thin solid black">{answer}</div>
+        Here is the answer in "pre" mode:
+        <pre style="border:thin solid black">{answer}</pre>
+        <a href={url_for('gptdemo')}> make another query</a>
+        '''
+    else:
+        return '''
+        <h1>Connor's GPT Demo App</h1>
+        Enter a list of keywords (up to 10, seperated by commas) that you'd like to 
+        make a recepie out of! For example, try "fast, cheap, vegetarian, dinner"
+        <form method="post">
+            <textarea name="prompt"></textarea>
+            <p><input type=submit value="get response">
+        </form>
+        '''
 
 @app.route('/gptdemo', methods=['GET', 'POST'])
 def gptdemo():
