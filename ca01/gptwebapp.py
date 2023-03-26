@@ -33,8 +33,9 @@ def index():
     ''' display a link to the general query page '''
     print('processing / route')
     return f'''
-        <h1>chefGPT</h1>
+        <h1>ChefGPT</h1>
         <a href="{url_for('connor')}">Connor's GPT prompt: Make a recepie to fit your needs</a>
+        <a href="{url_for('sam')}">Sam's GPT prompt: Get a recepie that uses the ingredients you have</a>
         <a href="{url_for('gptdemo')}">Ask questions to GPT</a>
     '''
 
@@ -67,6 +68,36 @@ def connor():
             <p><input type=submit value="get response">
         </form>
         '''
+    
+@app.route('/sam', methods=['Get', 'POST'])
+def sam():
+    ''' Sam's prompt engineering page
+    '''
+    if request.method == 'POST':
+        prompt = request.form['prompt']
+        passalong = "Give me a recepie that includes the following ingredients: " + prompt
+        answer = gptAPI.samResponse(passalong)
+        return f'''
+        <h1>Sam's GPT Demo</h1>
+        <pre style="bgcolor:yellow">{prompt}</pre>
+        <hr>
+        Here is the answer in text mode:
+        <div style="border:thin solid black">{answer}</div>
+        Here is the answer in "pre" mode:
+        <pre style="border:thin solid black">{answer}</pre>
+        <a href={url_for('gptdemo')}> make another query</a>
+        '''
+    else:
+        return '''
+        <h1>Sam's GPT Demo App</h1>
+        Enter a list of ingredients that you'd like to make a recepie out of!
+        For example, try "rice, chili oil, tomato"
+        <form method="post">
+            <textarea name="prompt"></textarea>
+            <p><input type=submit value="get response">
+        </form>
+        '''
+
 
 @app.route('/gptdemo', methods=['GET', 'POST'])
 def gptdemo():
