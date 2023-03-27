@@ -49,13 +49,15 @@ def connor():
         answer = gptAPI.connorResponse(passalong)
         return f'''
         <h1>Connor's GPT Demo</h1>
-        <pre style="bgcolor:yellow">{prompt}</pre>
+        <pre style="bgcolor:yellow">{"Your keywords were: " + prompt}</pre>
         <hr>
         Here is the answer in text mode:
         <div style="border:thin solid black">{answer}</div>
         Here is the answer in "pre" mode:
         <pre style="border:thin solid black">{answer}</pre>
-        <a href={url_for('gptdemo')}> make another query</a>
+        <a href={url_for('connor')}> Make another recepie?</a>
+        <p> </p>
+        <a href={url_for('index')}> Go back home</a>
         '''
     else:
         return '''
