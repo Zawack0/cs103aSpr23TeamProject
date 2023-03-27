@@ -86,7 +86,7 @@ def sam():
         <div style="border:thin solid black">{answer}</div>
         Here is the answer in "pre" mode:
         <pre style="border:thin solid black">{answer}</pre>
-        <a href={url_for('gptdemo')}> make another query</a>
+        <a href={url_for('sam')}> make another query</a>
         '''
     else:
         return '''
