@@ -38,6 +38,7 @@ def index():
         <a href="{url_for('team')}">About the team</a><br>
         <a href="{url_for('connor')}">Connor's GPT prompt: Make a recepie to fit your needs</a><br>
         <a href="{url_for('sam')}">Sam's GPT prompt: Get a recepie that uses the ingredients you have</a><br>
+        <a href="{url_for('disclaimer')}">Disclaimer</a><br>
     '''
 
 
@@ -109,10 +110,19 @@ def about():
 
 @app.route('/team', methods=['GET', 'POST'])
 def team():
-    return '''Team Members:\nSam Herman: Freshman and Brandeis University studying computer science, mathematics, applied math, and Japanese language.
-    Created personal Prompt engineering page, about page, and team page.\n
-    Connor Zawacki\nCole Simmons\nMargaret Potagal\nDaniel Olevsky'''
+    return '''Team Members:\n<p>Sam Herman: Freshman and Brandeis University studying computer science, mathematics, applied math, and Japanese language.
+    Created personal Prompt engineering page, about page, and team page.</p>\n
+    <p>Connor Zawacki: Junior at Brandeis University studying computer science and neuroscience. Created personal prompt engineering page, index page and disclaimer, modified about and team pages</p>\nCole Simmons\nMargaret Potagal\nDaniel Olevsky'''
 
+@app.route('/disclaimer', methods=['GET'])
+def disclaimer():
+    return '''
+    <p>chefGPT uses openAI's chatgpt language processing AI in order to create potential cooking solutions. Given that this is not chatGPT's origninal purpose,</p>
+    <p>all recepies and advice given by chefGPT should be checked and/or modified by the USER in order to meet FDA guidelines. Neither the creator's of this webapp</p>
+    <p>nor openAI are responsible for any consequences misuse of chefGPT nor any potential alergic reactions or sickness sustained as a result of not exercising due caution
+    <p> </p>
+    <p> for more information on safely preparing food, visit </p>
+    <a> https://www.fda.gov/food/people-risk-foodborne-illness/meat-poultry-seafood-food-safety-moms-be#:~:text=Cook%20beef%2C%20pork%2C%20veal%2C,a%203%20minute%20rest%20time.&text=Cook%20ground%20beef%2C%20veal%2C%20lamb,F%20(74%C2%B0%20C).&text=Cook%20all%20poultry%20to%20minimal,F%20(74%C2%B0%20C). </a>'''
 if __name__=='__main__':
     # run the code on port 5001, MacOS uses port 5000 for its own service :(
     app.run(debug=True,port=5001)
