@@ -1,1 +1,2 @@
-print("stuff")
+def Transaction():
+    print("idk stuff")
