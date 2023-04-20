@@ -1,4 +1,6 @@
 from transaction import Transaction
+#analagous to todo2.py
+#no sql calls
 
 def print_menu():
     print('0. quit')
