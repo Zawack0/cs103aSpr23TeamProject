@@ -21,3 +21,54 @@ class Transaction:
         print('Categories:')
         for category in categories:
             print(category)
+
+
+    def add_categories(self):
+        '''
+        FINISH METHOD
+        '''
+
+    def modify_categories(self):
+        '''
+        FINISH METHOD
+        '''
+
+    def show_transactions(self):
+        '''
+        FINISH METHOD
+        '''
+
+    def add_transactions(self):
+        '''
+        FINISH METHOD
+        '''
+
+    def delete_transactions(self):
+        '''
+        FINISH METHOD
+        '''
+
+    def date_summarize(self):
+        '''
+        FINISH METHOD
+        '''
+
+    def month_summarize(self):
+        '''
+        FINISH METHOD
+        '''
+
+    def year_summarize(self):
+        '''
+        FINISH METHOD
+        '''
+
+    def category_summarize(self):
+        '''
+        FINISH METHOD
+        '''
+
+    def menu(self):
+        '''
+        FINISH METHOD
+        '''
