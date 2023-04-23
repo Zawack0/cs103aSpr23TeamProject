@@ -63,8 +63,12 @@ def main():
             amount = get_num_arg("new transaction amount")
             category = get_text_arg("new transaction category")
             date = get_date_arg()
+            helper = date.split('/')
+            day = int(helper[0])
+            month = int(helper[1])
+            year = int(helper[2])
             desc = get_text_arg("new transaction description")
-            new_transaction = {'item_num':item_num,'item':name, 'amount':amount, 'category':category, 'date':date, 'description':desc}
+            new_transaction = {'item_num':item_num,'item':name, 'amount':amount, 'category':category, 'date':date, 'description':desc, 'day':day, 'month':month, 'year':year}
             transaction.add_transaction(new_transaction)
             pass # TODO: implement add transaction
         elif choice == 6:

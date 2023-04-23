@@ -13,9 +13,10 @@ class Transaction:
                 amount REAL,
                 category TEXT,
                 date TEXT,
-                description TEXT
-            )
-        ''')
+                description TEXT,
+                day INTEGER,
+                month INTEGER,
+                year INTEGER)''')
 
     def show_categories(self):
         self.cursor.execute('SELECT DISTINCT category FROM transactions')
@@ -33,7 +34,7 @@ class Transaction:
     
     def add_transaction(self,item):
         ''' create a transaction and add it to the todo table '''
-        self.cursor.execute("INSERT INTO transactions VALUES(?,?,?,?,?,?)",(item["item_num"],item['item'],item['amount'],item['category'],item['date'],item['description']))
+        self.cursor.execute("INSERT INTO transactions VALUES(?,?,?,?,?,?,?,?,?)",(item["item_num"],item['item'],item['amount'],item['category'],item['date'],item['description'],item['day'],item['month'],item['year']))
 
     def delete_transaction(self,delete_name):
         ''' delete a transaction item '''
