@@ -68,7 +68,8 @@ def main():
             transaction.add_transaction(new_transaction)
             pass # TODO: implement add transaction
         elif choice == 6:
-            pass # TODO: implement delete transaction
+            delete_name = get_text_arg("name of transaction to be deleted")
+            transaction.delete_transaction(delete_name)
         elif choice == 7:
             pass # TODO: implement summarize transactions by date
         elif choice == 8:

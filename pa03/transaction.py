@@ -35,8 +35,9 @@ class Transaction:
         ''' create a transaction and add it to the todo table '''
         self.cursor.execute("INSERT INTO transactions VALUES(?,?,?,?,?,?)",(item["item_num"],item['item'],item['amount'],item['category'],item['date'],item['description']))
 
-    def delete_transaction(self,rowid):
+    def delete_transaction(self,delete_name):
         ''' delete a transaction item '''
+        self.cursor.execute("DELETE FROM transactions WHERE item=(?)",(delete_name,))
 
     def summarize(self,method):
         '''summarize transaction as specified by method'''
