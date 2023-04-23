@@ -23,6 +23,26 @@ def get_menu_choice():
         choice = input('Enter your choice: ')
     return int(choice)
 
+def get_text_arg(argname):
+    choice = input("Enter " + argname + ": ")
+    return str(choice)
+
+def get_num_arg(argname):
+    choice = input("Enter " + argname + ": ")
+    while not choice.isdigit():
+        print("Invalid choice!")
+        choice = input("Enter " + argname + ": ")
+    return int(choice)
+
+def get_date_arg():
+    '''prompt user for mm/dd/yyyy formatted date'''
+    month = str(get_num_arg("month"))
+    day = str(get_num_arg("day"))
+    year = str(get_num_arg("year"))
+    seperator = "/"
+    return(month+seperator+day+seperator+year)
+
+
 def main():
     filename = input('Enter database filename: ')
     transaction = Transaction(filename)
@@ -38,6 +58,14 @@ def main():
         elif choice == 4:
             pass # TODO: implement show transactions
         elif choice == 5:
+            item_num = get_num_arg("new transaction num")
+            name = get_text_arg("new transaction name")
+            amount = get_num_arg("new transaction amount")
+            category = get_text_arg("new transaction category")
+            date = get_date_arg()
+            desc = get_text_arg("new transaction description")
+            new_transaction = {'item_num':item_num,'item':name, 'amount':amount, 'category':category, 'date':date, 'description':desc}
+            transaction.add_transaction(new_transaction)
             pass # TODO: implement add transaction
         elif choice == 6:
             pass # TODO: implement delete transaction

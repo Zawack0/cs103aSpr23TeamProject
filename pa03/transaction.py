@@ -33,6 +33,7 @@ class Transaction:
     
     def add_transaction(self,item):
         ''' create a transaction and add it to the todo table '''
+        self.cursor.execute("INSERT INTO transactions VALUES(?,?,?,?,?,?)",(item["item_num"],item['item'],item['amount'],item['category'],item['date'],item['description']))
 
     def delete_transaction(self,rowid):
         ''' delete a transaction item '''
