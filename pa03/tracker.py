@@ -51,15 +51,16 @@ def main():
     while choice != 0:
         if choice == 1:
             transaction.show_categories()
-            pass # TODO: implement show categories
+            pass
         elif choice == 2:
             category = get_text_arg("new category name: ")
             transaction.add_category(category)
-            pass # TODO: implement add category
+            pass 
         elif choice == 3:
             pass # TODO: implement modify category
         elif choice == 4:
-            pass # TODO: implement show transactions
+            transaction.summarize(1)
+            pass 
         elif choice == 5:
             item_num = get_num_arg("new transaction num")
             name = get_text_arg("new transaction name")
@@ -78,12 +79,16 @@ def main():
             delete_name = get_text_arg("name of transaction to be deleted")
             transaction.delete_transaction(delete_name)
         elif choice == 7:
-            pass # TODO: implement summarize transactions by date
+            transaction.summarize(1)
+            pass # 
         elif choice == 8:
+            transaction.summarize(2)
             pass # TODO: implement summarize transactions by month
         elif choice == 9:
+            transaction.summarize(3)
             pass # TODO: implement summarize transactions by year
         elif choice == 10:
+            transaction.summarize(4)
             pass # TODO: implement summarize transactions by category
         elif choice == 11:
             print_menu()

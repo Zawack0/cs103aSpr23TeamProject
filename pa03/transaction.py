@@ -43,6 +43,14 @@ class Transaction:
 
     def summarize(self,method):
         '''summarize transaction as specified by method'''
+        if method == 1:
+            pass # TODO: implement summarize by date
+        if method == 2:
+           pass # TODO: implement summarize by month
+        if method == 3:
+           pass # TODO: implement summarize by year
+        if method == 4:
+            pass # TODO: implement summarize by category
 
     def get_menu(self):
         '''returns menu'''
