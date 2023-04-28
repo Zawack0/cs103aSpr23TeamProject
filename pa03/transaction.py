@@ -27,6 +27,7 @@ class Transaction:
 
     def add_category(self,category):
         '''add a new category'''
+        self.cursor.execute("INSERT INTO transactions VALUES(?,?,?,?,?,?,?,?,?)",(0,"placeholder",0,category,"none","placeholder",0,0,0))
 
     def mod_category(self,rowid,newcat):
         '''change an old category to new'''
