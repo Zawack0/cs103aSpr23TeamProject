@@ -39,6 +39,18 @@ def index():
         <a href="{url_for('connor')}">Connor's GPT prompt: Make a recepie to fit your needs</a><br>
         <a href="{url_for('sam')}">Sam's GPT prompt: Get a recepie that uses the ingredients you have</a><br>
         <a href="{url_for('disclaimer')}">Disclaimer</a><br>
+        <h1>Member Pages</h1>
+        <a href="{url_for('cole')}">Learn about Cole Simmons</a>
+    '''
+
+@app.route('/cole')
+def cole():
+    ''' display a link to the general query page '''
+    print('processing / route')
+    return f'''
+        <h1>Cole Simmons><br>
+        <h2>Navigate</h2>
+        <a href="{url_for('index')}">Go back home</a><br><a href="{url_for('gptdemo')}">Ask questions to GPT</a>
     '''
 
 
