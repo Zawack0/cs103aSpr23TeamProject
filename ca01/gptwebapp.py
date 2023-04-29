@@ -36,22 +36,42 @@ def index():
         <h1>ChefGPT</h1>
         <a href="{url_for('about')}">About ChefGPT</a><br>
         <a href="{url_for('team')}">About the team</a><br>
-        <a href="{url_for('connor')}">Connor's GPT prompt: Make a recepie to fit your needs</a><br>
-        <a href="{url_for('sam')}">Sam's GPT prompt: Get a recepie that uses the ingredients you have</a><br>
+        <a href="{url_for('connor')}">Connor's GPT prompt: Make a recipe to fit your needs</a><br>
+        <a href="{url_for('sam')}">Sam's GPT prompt: Get a recipe that uses the ingredients you have</a><br>
+        <a href="{url_for('cole')}">Cole's GPT prompt: Create a recipe for a dish based off of your favorite foods</a>
         <a href="{url_for('disclaimer')}">Disclaimer</a><br>
-        <h1>Member Pages</h1>
-        <a href="{url_for('cole')}">Learn about Cole Simmons</a>
     '''
 
-@app.route('/cole')
+@app.route('/cole', methods = ['Get', 'POST'])
 def cole():
-    ''' display a link to the general query page '''
-    print('processing / route')
-    return f'''
-        <h1>Cole Simmons><br>
-        <h2>Navigate</h2>
-        <a href="{url_for('index')}">Go back home</a><br><a href="{url_for('gptdemo')}">Ask questions to GPT</a>
+    ''' Cole prompt engineering page
     '''
+    if request.method == 'POST':
+        prompt = request.form['prompt']
+        passalong = "Give me a recipe for a meal that is inspired by these foods : " + prompt
+        answer = gptAPI.coleResponse(passalong)
+        return f'''
+        <h1>Cole's GPT Demo</h1>
+        <pre style="bgcolor:yellow">{"Your favorite foods are " + prompt}</pre>
+        <hr>
+        Here is a recipe you should try:
+        <div style="border:thin solid black">{answer}</div>
+        Here is the answer in "pre" mode:
+        <pre style="border:thin solid black">{answer}</pre>
+        <a href={url_for('connor')}> Make another recipe?</a>
+        <p> </p>
+        <a href={url_for('index')}> Go back home</a>
+        '''
+    else:
+        return '''
+        <h1>Cole's GPT Demo App</h1>
+        Enter a list of your favorite foods which you'd like a recipe inspired by! For
+        example, try "Ice cream, chicken tiki masala, and onion rings"
+        <form method="post">
+            <textarea name="prompt"></textarea>
+            <p><input type=submit value="get response">
+        </form>
+        '''
 
 
 @app.route('/connor', methods=['Get', 'POST'])
@@ -60,7 +80,7 @@ def connor():
     '''
     if request.method == 'POST':
         prompt = request.form['prompt']
-        passalong = "Give me a recepie that meets the following parameters: " + prompt
+        passalong = "Give me a recipe that meets the following parameters: " + prompt
         answer = gptAPI.connorResponse(passalong)
         return f'''
         <h1>Connor's GPT Demo</h1>
@@ -70,7 +90,7 @@ def connor():
         <div style="border:thin solid black">{answer}</div>
         Here is the answer in "pre" mode:
         <pre style="border:thin solid black">{answer}</pre>
-        <a href={url_for('connor')}> Make another recepie?</a>
+        <a href={url_for('connor')}> Make another recipe?</a>
         <p> </p>
         <a href={url_for('index')}> Go back home</a>
         '''
@@ -78,7 +98,7 @@ def connor():
         return '''
         <h1>Connor's GPT Demo App</h1>
         Enter a list of keywords (up to 10, seperated by commas) that you'd like to 
-        make a recepie out of! For example, try "fast, cheap, vegetarian, dinner"
+        make a recipe out of! For example, try "fast, cheap, vegetarian, dinner"
         <form method="post">
             <textarea name="prompt"></textarea>
             <p><input type=submit value="get response">
@@ -91,7 +111,7 @@ def sam():
     '''
     if request.method == 'POST':
         prompt = request.form['prompt']
-        passalong = "Give me a recepie that includes the following ingredients: " + prompt
+        passalong = "Give me a recipe that includes the following ingredients: " + prompt
         answer = gptAPI.samResponse(passalong)
         return f'''
         <h1>Sam's GPT Demo</h1>
@@ -106,7 +126,7 @@ def sam():
     else:
         return '''
         <h1>Sam's GPT Demo App</h1>
-        Enter a list of ingredients that you'd like to make a recepie out of!
+        Enter a list of ingredients that you'd like to make a recipe out of!
         For example, try "rice, chili oil, tomato"
         <form method="post">
             <textarea name="prompt"></textarea>
@@ -122,15 +142,16 @@ def about():
 
 @app.route('/team', methods=['GET', 'POST'])
 def team():
-    return '''Team Members:\n<p>Sam Herman: Freshman and Brandeis University studying computer science, mathematics, applied math, and Japanese language.
+    return '''Team Members:\n<p>Sam Herman: Freshman at Brandeis University studying computer science, mathematics, applied math, and Japanese language.
     Created personal Prompt engineering page, about page, and team page.</p>\n
-    <p>Connor Zawacki: Junior at Brandeis University studying computer science and neuroscience. Created personal prompt engineering page, index page and disclaimer, modified about and team pages</p>\nCole Simmons\nMargaret Potagal\nDaniel Olevsky'''
+    <p>Connor Zawacki: Junior at Brandeis University studying computer science and neuroscience. Created personal prompt engineering page, index page and disclaimer, modified about and team pages</p>\n
+    <p>Cole Simmons: Freshman at Brandeis University studying computer science and anthropology. Created personal promt engineering page, corrected text, and modified index and team page\nDaniel Olevsky'''
 
 @app.route('/disclaimer', methods=['GET'])
 def disclaimer():
     return '''
     <p>chefGPT uses openAI's chatgpt language processing AI in order to create potential cooking solutions. Given that this is not chatGPT's origninal purpose,</p>
-    <p>all recepies and advice given by chefGPT should be checked and/or modified by the USER in order to meet FDA guidelines. Neither the creator's of this webapp</p>
+    <p>all recipes and advice given by chefGPT should be checked and/or modified by the USER in order to meet FDA guidelines. Neither the creator's of this webapp</p>
     <p>nor openAI are responsible for any consequences misuse of chefGPT nor any potential alergic reactions or sickness sustained as a result of not exercising due caution
     <p> </p>
     <p> for more information on safely preparing food, visit </p>
