@@ -44,7 +44,8 @@ def cole():
     ''' display a link to the general query page '''
     print('processing / route')
     return f'''
-        <h1>Navigate</h1>
+        <h1>Cole Simmons><br>
+        <h2>Navigate</h2>
         <a href="{url_for('index')}">Go back home</a><br><a href="{url_for('gptdemo')}">Ask questions to GPT</a>
     '''
 
