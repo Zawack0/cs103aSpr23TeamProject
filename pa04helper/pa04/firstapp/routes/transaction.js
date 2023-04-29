@@ -20,7 +20,7 @@ isLoggedIn = (req,res,next) => {
 router.get('/transaction/',
   isLoggedIn,
   async (req, res, next) => {
-      //res.locals.items = await TransactionItem.find({userId:req.user._id})
+      res.locals.items = await TransactionItem.find({userId:req.user._id})
       res.render('transaction');
 });
 
