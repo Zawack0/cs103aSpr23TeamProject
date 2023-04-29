@@ -56,6 +56,9 @@ class GPT():
         response = completion.choices[0].text
         return response
     
+<<<<<<< HEAD
+    def method():
+=======
     def connorResponse(self,prompt):
         ''' Generate a GPT response '''
         completion = openai.Completion.create(
@@ -69,10 +72,11 @@ class GPT():
 
         response = completion.choices[0].text
         return response
+>>>>>>> 982a0b8e5be69453bab3f0dbe33b21ecf523dc5b
 
-if __name__=='__main__':
-    '''
-    '''
-    import os
-    g = GPT(os.environ.get("APIKEY"))
-    print(g.getResponse("what does openai's GPT stand for?"))
+        if __name__=='__main__':
+            '''
+            '''
+            import os
+            g = GPT(os.environ.get("APIKEY"))
+            print(g.getResponse("what does openai's GPT stand for?"))
