@@ -56,9 +56,6 @@ class GPT():
         response = completion.choices[0].text
         return response
     
-<<<<<<< HEAD
-    def method():
-=======
     def connorResponse(self,prompt):
         ''' Generate a GPT response '''
         completion = openai.Completion.create(
@@ -72,7 +69,6 @@ class GPT():
 
         response = completion.choices[0].text
         return response
->>>>>>> 982a0b8e5be69453bab3f0dbe33b21ecf523dc5b
 
         if __name__=='__main__':
             '''
