@@ -7,6 +7,17 @@
     <p> Here is your list of transactions! </p>
 
     <style>
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      th, td {
+        text-align: left;
+        padding: 8px;
+        border: 1px solid black;
+      }
+
       .button-bar {
         display: flex;
         justify-content: space-around;
@@ -42,6 +53,30 @@
       <button onclick="location.href='transaction/sort/date'">sort by date</button>
     </div>
 
+
+    <table>
+      <thead>
+        <tr>
+          <th>description</th>
+          <th>amount</th>
+          <th>category</th>
+          <th>date</th>
+          <th>delete</th>
+          <th>edit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% items.forEach(function(transaction) { %>
+          <tr>
+            <td><%= transaction.description %></td>
+            <td><%= transaction.amount %></td>
+            <td><%= transaction.category %></td>
+            <td><%= transaction.date %></td>
+            <!-- Add additional table cells for any other fields in your transactionItem schema -->
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
 
 
       
