@@ -62,7 +62,9 @@ def main():
             transaction.summarize(1)
             pass 
         elif choice == 5:
-            item_num = get_num_arg("new transaction num")
+            item_num = -1
+            while item_num < 0:
+                item_num = get_num_arg("new transaction num")
             name = get_text_arg("new transaction name")
             amount = get_num_arg("new transaction amount")
             category = get_text_arg("new transaction category")
@@ -88,11 +90,11 @@ def main():
             transaction.summarize(3)
             pass # TODO: implement summarize transactions by year
         elif choice == 10:
-            transaction.summarize(4)
-            pass # TODO: implement summarize transactions by category
+            print(transaction.summarize(4))
         elif choice == 11:
             print_menu()
         choice = get_menu_choice()
+    transaction.close()
 
 if __name__ == '__main__':
     main()
