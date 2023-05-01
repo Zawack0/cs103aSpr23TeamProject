@@ -24,6 +24,8 @@ router.get('/transaction/',
       res.render('transaction');
 });
 
+const TransactionItem = require('./transactionItem'); // assuming transactionItem.js exports the TransactionItem schema
+
 
 /* add the value in the body to the list associated to the key */
 // RIPPED FROM THE TODO VERSION, modify plz
