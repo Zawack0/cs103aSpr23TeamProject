@@ -3,7 +3,6 @@ import sqlite3
 #no printing
 
 class Transaction:
-    catIndex = -1
     def __init__(self, filename):
         self.conn = sqlite3.connect(filename)
         self.cursor = self.conn.cursor()
@@ -18,6 +17,7 @@ class Transaction:
                 day INTEGER,
                 month INTEGER,
                 year INTEGER)''')
+        self.catIndex = -1
 
     def show_categories(self):
         self.cursor.execute('SELECT DISTINCT category FROM transactions')
@@ -29,8 +29,8 @@ class Transaction:
     '''Connor's work with Cole's bugfixes'''
     def add_category(self,category):
         '''add a new category'''
-        self.cursor.execute("INSERT INTO transactions VALUES(?,?,?,?,?,?,?,?,?)",(catIndex,"placeholder",0,category,"none","placeholder",0,0,0))
-        catIndex = catIndex - 1
+        self.cursor.execute("INSERT INTO transactions VALUES(?,?,?,?,?,?,?,?,?)",(self.catIndex,"placeholder",0,category,"none","placeholder",0,0,0))
+        self.catIndex = self.catIndex - 1
 
     def mod_category(self,rowid,newcat):
         '''change an old category to new'''
@@ -48,13 +48,41 @@ class Transaction:
     def summarize(self,method):
         '''summarize transaction as specified by method'''
         if method == 1:
-            pass # TODO: implement summarize by date
+            self.cursor.execute("SELECT year, SUM(amount) as total_amount, COUNT(*) as total_transactions FROM transactions WHERE id > 0 GROUP BY year,month,date")
+            results = self.cursor.fetchall()
+            lines = ""
+            for row in results:
+                year = row[0]
+                month = row[1]
+                date = row[2]
+                total_amount = row[3]
+                total_transactions = row[4]
+                lines += f"Date: {date}/{month}/{year} , Total Amount: {total_amount}, Total Transactions: {total_transactions}\n"
+            return lines
         if method == 2:
-           pass # TODO: implement summarize by month
+            self.cursor.execute("SELECT year, SUM(amount) as total_amount, COUNT(*) as total_transactions FROM transactions WHERE id > 0 GROUP BY year,month")
+            results = self.cursor.fetchall()
+            lines = ""
+            for row in results:
+                year = row[0]
+                month = row[1]
+                total_amount = row[2]
+                total_transactions = row[3]
+                lines += f"Date: {month}/{year} , Total Amount: {total_amount}, Total Transactions: {total_transactions}\n"
+            return lines
         if method == 3:
-           pass # TODO: implement summarize by year
+            self.cursor.execute("SELECT year, SUM(amount) as total_amount, COUNT(*) as total_transactions FROM transactions WHERE id > 0 GROUP BY year")
+            results = self.cursor.fetchall()
+            lines = ""
+            for row in results:
+                year = row[0]
+                total_amount = row[1]
+                total_transactions = row[2]
+                lines += f"Year: {year}, Total Amount: {total_amount}, Total Transactions: {total_transactions}\n"
+            return lines
+           
         if method == 4:
-            self.cursor.execute("SELECT category, SUM(amount) as total_amount, COUNT(*) as total_transactions FROM transactions WHERE id > 0 GROUP BY category")
+            self.cursor.execute("SELECT category, SUM(amount) as total_amount, COUNT(*) as total_transactions FROM transactions WHERE id >= 0 GROUP BY category")
             results = self.cursor.fetchall()
             lines = ""
             for row in results:

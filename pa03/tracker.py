@@ -53,7 +53,7 @@ def main():
             transaction.show_categories()
             pass
         elif choice == 2:
-            category = get_text_arg("new category name: ")
+            category = get_text_arg("new category name")
             transaction.add_category(category)
             pass 
         elif choice == 3:
@@ -62,9 +62,7 @@ def main():
             transaction.summarize(1)
             pass 
         elif choice == 5:
-            item_num = -1
-            while item_num < 0:
-                item_num = get_num_arg("new transaction num")
+            item_num = get_num_arg("new transaction num")
             name = get_text_arg("new transaction name")
             amount = get_num_arg("new transaction amount")
             category = get_text_arg("new transaction category")
