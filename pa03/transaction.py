@@ -3,6 +3,7 @@ import sqlite3
 #no printing
 
 class Transaction:
+    catIndex = -1
     def __init__(self, filename):
         self.conn = sqlite3.connect(filename)
         self.cursor = self.conn.cursor()
@@ -25,9 +26,11 @@ class Transaction:
         for category in categories:
             print(category)
 
+    '''Connor's work with Cole's bugfixes'''
     def add_category(self,category):
         '''add a new category'''
-        self.cursor.execute("INSERT INTO transactions VALUES(?,?,?,?,?,?,?,?,?)",(0,"placeholder",0,category,"none","placeholder",0,0,0))
+        self.cursor.execute("INSERT INTO transactions VALUES(?,?,?,?,?,?,?,?,?)",(catIndex,"placeholder",0,category,"none","placeholder",0,0,0))
+        catIndex = catIndex - 1
 
     def mod_category(self,rowid,newcat):
         '''change an old category to new'''
@@ -41,6 +44,7 @@ class Transaction:
         ''' delete a transaction item '''
         self.cursor.execute("DELETE FROM transactions WHERE item=(?)",(delete_name,))
 
+    '''Cole's work'''
     def summarize(self,method):
         '''summarize transaction as specified by method'''
         if method == 1:
@@ -50,7 +54,16 @@ class Transaction:
         if method == 3:
            pass # TODO: implement summarize by year
         if method == 4:
-            pass # TODO: implement summarize by category
+            self.cursor.execute("SELECT category, SUM(amount) as total_amount, COUNT(*) as total_transactions FROM transactions WHERE id > 0 GROUP BY category")
+            results = self.cursor.fetchall()
+            lines = ""
+            for row in results:
+                category = row[0]
+                total_amount = row[1]
+                total_transactions = row[2]
+                lines += f"Category: {category}, Total Amount: {total_amount}, Total Transactions: {total_transactions}\n"
+            return lines
+            
 
     def get_menu(self):
         '''returns menu'''
@@ -66,7 +79,10 @@ class Transaction:
                 9. summarize transactions by year
                 10. summarize transactions by category'''
         return menu
-
     
-
-
+    '''Cole's work'''
+    def close(self):
+        '''Closes the program and saves the data'''
+        self.conn.commit()
+        self.conn.close()
+        self.cursor.close()
