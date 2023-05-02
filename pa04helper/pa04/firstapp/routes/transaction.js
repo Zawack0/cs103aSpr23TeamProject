@@ -28,19 +28,25 @@ router.get('/transaction/',
 
 
 /* add the value in the body to the list associated to the key */
-// RIPPED FROM THE TODO VERSION, modify plz
-// router.post('/transaction',
-//   isLoggedIn,
-//   async (req, res, next) => {
-//       const todo = new ToDoItem(
-//         {item:req.body.item,
-//          createdAt: new Date(),
-//          complete: false,
-//          userId: req.user._id
-//         })
-//       await todo.save();
-//       res.redirect('/todo')
-// });
+
+router.post('/addtransaction',
+  isLoggedIn,
+  async (req, res, next) => {
+      const transaction = new TransactionItem(
+        {
+         userId: req.user._id,
+         description: req.body.description,
+         category: req.body.category,
+         amount: req.body.amount,
+         date: req.body.date
+          //item:req.body.item,
+         //createdAt: new Date(),
+         //complete: false,
+         //userId: req.user._id
+        })
+      await transaction.save();
+      res.redirect('/transaction')
+});
 
 
 router.get('/transaction/remove/:itemId',

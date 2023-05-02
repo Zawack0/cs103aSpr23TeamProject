@@ -6,7 +6,6 @@ const ObjectId = mongoose.Schema.Types.ObjectId;
 
 var transactionSchema = Schema( {
   userId: ObjectId,
-  item: String,
   amount: Number,
   category: String,
   date: String,
