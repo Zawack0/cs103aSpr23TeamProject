@@ -54,7 +54,7 @@ router.get('/transaction/remove/:itemId',
   async (req, res, next) => {
       console.log("inside /transaction/remove/:itemId")
       await TransactionItem.deleteOne({_id:req.params.itemId});
-      res.redirect('/tranaction')
+      res.redirect('/transaction')
 });
 
 
