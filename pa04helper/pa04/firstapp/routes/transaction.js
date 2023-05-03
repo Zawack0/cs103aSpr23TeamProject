@@ -39,10 +39,7 @@ router.post('/addtransaction',
          category: req.body.category,
          amount: req.body.amount,
          date: req.body.date
-          //item:req.body.item,
-         //createdAt: new Date(),
-         //complete: false,
-         //userId: req.user._id
+
         })
       await transaction.save();
       res.redirect('/transaction')
