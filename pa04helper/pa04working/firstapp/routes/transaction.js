@@ -54,6 +54,56 @@ router.get('/transaction/remove/:itemId',
       res.redirect('/transaction')
 });
 
+router.get('/transaction/edit/:itemId', 
+  isLoggedIn, 
+  async (req, res, next) => {
+    console.log('made it to edit function')
+    try {
+      const transaction = await TransactionItem.findOne({_id:req.params.itemId});
+      if (!transaction) {
+        return res.status(404).send('Transaction not found');
+      }
+  
+      // Autofill the form fields with the transaction data
+      const description = transaction.description;
+      const amount = transaction.amount;
+      const category = transaction.category;
+      const date = transaction.date;
+  
+      // Render the edit transaction form with the autofilled data
+      res.render('edit-transaction', { title: 'Edit Transaction', itemId: req.params.itemId, description, amount, category, date });
+    } catch (err) {
+      console.error(err);
+      return res.status(500).send('Internal server error');
+    }
+  });
+
+  router.post('/transaction/edit/:itemId', isLoggedIn, async (req, res, next) => {
+    const { description, amount, category, date } = req.body;
+    const updatedTransaction = {
+      description,
+      amount,
+      category,
+      date
+    };
+  
+    try {
+      const transactionItem = await TransactionItem.findByIdAndUpdate(
+        req.params.itemId,
+        updatedTransaction,
+        { new: true }
+      );
+      console.log('Transaction updated successfully:', transactionItem);
+  
+      res.redirect('/transaction');
+    } catch (err) {
+      console.error('Error updating transaction:', err);
+      next(err);
+    }
+  });
+
+
+
 
 
 module.exports = router;
