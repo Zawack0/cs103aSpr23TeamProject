@@ -99,6 +99,14 @@ app.get('/', (req,res,next) => {
   res.render('index');
 })
 
+app.get('/cole', (req, res,next) => {
+  res.render('cole');
+});
+
+app.get('/team', (req, res,next) => {
+  res.render('team');
+});
+
 app.get('/about', 
   isLoggedIn,
   (req,res,next) => {
