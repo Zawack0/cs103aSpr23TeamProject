@@ -10,7 +10,8 @@ var recipeSchema = Schema( {
   Type: String,
   Flavor: String,
   Restrictions: String,
-  Misc: String
+  Misc: String,
+  Recpie: String
 } );
 
 module.exports = mongoose.model( 'RecipeItem', recipeSchema );
