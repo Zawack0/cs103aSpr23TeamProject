@@ -48,16 +48,14 @@ class Transaction:
     def summarize(self,method):
         '''summarize transaction as specified by method'''
         if method == 1:
-            self.cursor.execute("SELECT year, SUM(amount) as total_amount, COUNT(*) as total_transactions FROM transactions WHERE id > 0 GROUP BY year,month,date")
+            self.cursor.execute("SELECT date, SUM(amount) as total_amount, COUNT(*) as total_transactions FROM transactions WHERE id >= 0 GROUP BY date")
             results = self.cursor.fetchall()
             lines = ""
             for row in results:
-                year = row[0]
-                month = row[1]
-                date = row[2]
-                total_amount = row[3]
-                total_transactions = row[4]
-                lines += f"Date: {date}/{month}/{year} , Total Amount: {total_amount}, Total Transactions: {total_transactions}\n"
+                date = row[0]
+                total_amount = row[1]
+                total_transactions = row[2]
+                lines += f"Date: {date}, Total Amount: {total_amount}, Total Transactions: {total_transactions}\n"
             return lines
         if method == 2:
             self.cursor.execute("SELECT year, SUM(amount) as total_amount, COUNT(*) as total_transactions FROM transactions WHERE id > 0 GROUP BY year,month")
@@ -114,3 +112,8 @@ class Transaction:
         self.conn.commit()
         self.conn.close()
         self.cursor.close()
+
+    '''Cole's work'''
+    def countTransactions(self):
+        self.cursor.execute("SELECT COUNT(*) FROM transactions WHERE id >= 0")
+        return self.cursor.fetchone()[0]
