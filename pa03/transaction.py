@@ -22,9 +22,9 @@ class Transaction:
     def show_categories(self):
         self.cursor.execute('SELECT DISTINCT category FROM transactions')
         categories = [row[0] for row in self.cursor.fetchall()]
-        print('Categories:')
+        result = 'Categories:\n'
         for category in categories:
-            print(category)
+            result += categories + '\n'
 
     '''Connor's work with Cole's bugfixes'''
     def add_category(self,category):
