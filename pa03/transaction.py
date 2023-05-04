@@ -35,7 +35,6 @@ class Transaction:
     def mod_category(self,rowid,newcat):
         '''change an old category to new'''
 
-    
     def add_transaction(self,item):
         ''' create a transaction and add it to the todo table '''
         self.cursor.execute("INSERT INTO transactions VALUES(?,?,?,?,?,?,?,?,?)",(item["item_num"],item['item'],item['amount'],item['category'],item['date'],item['description'],item['day'],item['month'],item['year']))
@@ -78,7 +77,6 @@ class Transaction:
                 total_transactions = row[2]
                 lines += f"Year: {year}, Total Amount: {total_amount}, Total Transactions: {total_transactions}\n"
             return lines
-           
         if method == 4:
             self.cursor.execute("SELECT category, SUM(amount) as total_amount, COUNT(*) as total_transactions FROM transactions WHERE id >= 0 GROUP BY category")
             results = self.cursor.fetchall()
@@ -89,7 +87,7 @@ class Transaction:
                 total_transactions = row[2]
                 lines += f"Category: {category}, Total Amount: {total_amount}, Total Transactions: {total_transactions}\n"
             return lines
-            
+
 
     def get_menu(self):
         '''returns menu'''
@@ -105,7 +103,7 @@ class Transaction:
                 9. summarize transactions by year
                 10. summarize transactions by category'''
         return menu
-    
+
     '''Cole's work'''
     def close(self):
         '''Closes the program and saves the data'''
