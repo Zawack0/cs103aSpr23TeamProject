@@ -44,12 +44,13 @@
     }
   </style>
 
+  <%# Cole's work %>
   <div class="button-bar">
-    <button onclick="location.href='/transaction/group'">group by category</button>
-    <button onclick="location.href='/transaction/sort/category'">sort by category</button>
-    <button onclick="location.href='transaction/sort/amount'">sort by amount</button>
-    <button onclick="location.href='transaction/sort/desc'">sort by description</button>
-    <button onclick="location.href='transaction/sort/date'">sort by date</button>
+    <button onclick="location.href='/transaction/byCategory'">group by category</button>
+    <button onclick="location.href='/transaction?sortBy=category'">sort by category</button>
+    <button onclick="location.href='/transaction?sortBy=amount'">sort by amount</button>
+    <button onclick="location.href='transaction?sortBy=desc'">sort by description</button>
+    <button onclick="location.href='transaction?sortBy=date'">sort by date</button>
   </div>
 
 

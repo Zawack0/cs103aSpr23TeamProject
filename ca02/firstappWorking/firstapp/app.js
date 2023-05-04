@@ -108,6 +108,13 @@ app.get('/about',
   }
 )
 
+app.get('/cole', 
+  isLoggedIn,
+  (req,res,next) => {
+    res.render('cole');
+  }
+)
+
 app.get('/connor', 
   isLoggedIn,
   (req,res,next) => {

@@ -17,11 +17,29 @@ isLoggedIn = (req,res,next) => {
 }
 
 // get the value associated to the key
+//Cole's work
 router.get('/transaction/',
   isLoggedIn,
   async (req, res, next) => {
-      res.locals.items = await TransactionItem.find({userId:req.user._id})
-      res.render('transaction');
+    var sort = req.query.sortBy
+    switch(sort) {
+      case 'amount':
+        res.locals.items = await TransactionItem.find({userId:req.user._id}).sort({'amount': -1})
+        break;
+      case 'desc':
+        res.locals.items = await TransactionItem.find({userId:req.user._id}).sort({'description': 1})
+        break;
+      case 'date':
+        res.locals.items = await TransactionItem.find({userId:req.user._id}).sort({'date': 1})
+        break;
+      case 'category':
+        res.locals.items = await TransactionItem.find({userId:req.user._id}).sort({'category': 1})
+        break;
+      default:
+        res.locals.items = await TransactionItem.find({userId:req.user._id})
+        break;
+    }
+    res.render('transaction');
 });
 
 //const TransactionItem = require('./transactionItem'); // assuming transactionItem.js exports the TransactionItem schema
@@ -42,7 +60,7 @@ router.post('/addtransaction',
 
         })
       await transaction.save();
-      res.redirect('/transaction')
+      res.redirect('/transaction/')
 });
 
 
@@ -52,6 +70,22 @@ router.get('/transaction/remove/:itemId',
       console.log("inside /transaction/remove/:itemId")
       await TransactionItem.deleteOne({_id:req.params.itemId});
       res.redirect('/transaction')
+});
+
+//This is Cole's work
+router.get('/transaction/byCategory',
+  isLoggedIn,
+  async (req, res, next) => {
+      console.log("inside /transaction/byCategory")
+      res.locals.items = await TransactionItem.aggregate([
+        {
+          $group: {
+            _id: '$category',
+            amount: { $sum: '$amount' }
+          }
+        }
+      ]);
+      res.render('grouped')
 });
 
 router.get('/transaction/edit/:itemId', 
@@ -101,9 +135,5 @@ router.get('/transaction/edit/:itemId',
       next(err);
     }
   });
-
-
-
-
 
 module.exports = router;

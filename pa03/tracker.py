@@ -89,7 +89,7 @@ def main():
     choice = get_menu_choice()
     while choice != 0:
         if choice == 1:
-            transaction.show_categories()
+            print(transaction.show_categories())
         elif choice == 2:
             category = get_text_arg("new category name")
             transaction.add_category(category)

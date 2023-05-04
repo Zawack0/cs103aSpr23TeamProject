@@ -103,6 +103,10 @@ app.get('/cole', (req, res,next) => {
   res.render('cole');
 });
 
+app.get('/connor', (req, res,next) => {
+  res.render('connor');
+});
+
 app.get('/team', (req, res,next) => {
   res.render('team');
 });
