@@ -7,10 +7,10 @@ const ObjectId = mongoose.Schema.Types.ObjectId;
 var recipeSchema = Schema( {
   userId: ObjectId,
   description: String,
-  Keywords: String,
-  day: Number,
-  month: Number,
-  year: Number
+  Type: String,
+  Flavor: String,
+  Restrictions: String,
+  Misc: String
 } );
 
 module.exports = mongoose.model( 'RecipeItem', recipeSchema );
