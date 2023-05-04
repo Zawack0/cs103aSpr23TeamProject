@@ -1,6 +1,6 @@
 Your team should create a web app using Express/Mongoose/EJS and the OpenAI API which uses prompt engineering to generate useful responses to specific user queries.
 
-Due date: Thursday 4 May before midnight. HAHA LMAO
+Due date: Thursday 4 May before midnight.
 
 Motivation: 
 The Express/Mongodb/EJS framework is a very powerful (and popular) approach to writing web apps. The goal of this assignment is to have you
