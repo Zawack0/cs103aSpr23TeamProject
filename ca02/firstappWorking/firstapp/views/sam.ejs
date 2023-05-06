@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <script>
+    function constructString() {
+      const coloration = document.getElementById('Coloration').value;
+      const size = document.getElementById('Size').value;
+      const features = document.getElementById('Features').value;
+      const location = document.getElementById('Location').value;
+      const message = `What species of bird best matches the following description (coloration: "${coloration}", approximate size: "${size}", notable features: "${features}", can be found in "${location}")? Please also provide a link to the wikipedia article for the bird species.`;
+      
+      document.getElementById('message').value = message;
+    }
+    </script>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Welcome the AI Bird Guide</title>
+    <style>
+      body {
+        text-align: center;
+      }
+      h1 {
+        margin-top: 60px;
+        font-size: 4em;
+        color: #0a246e; /* cyan */
+      }
+    </style>
+  </head>
+  <body>
+    <h1>AI Bird Guide</h1>
+    <p>Type the description of a wild bird you saw to get it identified!</p>
+    <form method="post" action="/birdguide">
+      <input type="text" name="Coloration" id="Coloration" placeholder="Coloration" required> <br>
+      <input type="text" name="Size" id="Size" placeholder="Size" required> <br>
+      <input type="text" name="Features" id="Features" placeholder="Notable Feaures" required> <br>
+      <input type="text" name="Location" id="Location" placeholder="Location Seen" required> <br>
+      
+      <input type="hidden" name="message" value="" id="message">
+      
+      <button type="submit" onclick="constructString()">Find That Bird!</button>
+      
+    </form>
+  </body>
+</html>
