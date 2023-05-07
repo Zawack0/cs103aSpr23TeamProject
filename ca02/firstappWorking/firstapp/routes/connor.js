@@ -17,6 +17,13 @@ isLoggedIn = (req,res,next) => {
   }
 }
 
+router.get('/cookbook/remove/:itemId',
+  isLoggedIn,
+  async (req, res, next) => {
+      console.log("inside /cookbook/remove/:itemId")
+      await RecipeItem.deleteOne({_id:req.params.itemId});
+      res.redirect('/cookbook')
+});
 
   router.post('/addrecipe',
   isLoggedIn,
@@ -37,7 +44,7 @@ isLoggedIn = (req,res,next) => {
       temperature: 0,
     });
     const generatedText = response.data.choices[0].text;
-    const firstLine = generatedText.split('\n')[0]
+    const firstLine = generatedText.split('\n')[1]
     console.log(generatedText)
     const recipe = new RecipeItem(
       {

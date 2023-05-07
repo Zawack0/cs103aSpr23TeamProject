@@ -66,6 +66,7 @@
   </head>
   <body>
     <h1>My Cookbook</h1>
+    <a style="color: #05cfc5;" href="/connor">Make a New Recipe</a>
     <% if (recipes.length > 0) { %>
       <ul id="my-list">
         <% recipes.forEach(recipe => { %>
@@ -74,7 +75,9 @@
               <h3>
                 <span class="favorite-star <%= recipe.Favorite ? 'filled' : '' %>" data-recipe-id="<%= recipe.id %>">&#9734;</span>
                 <%= recipe.Name %>
+                
               </h3>
+              <a style="color: red;" href="/cookbook/remove/<%=recipe._id %>">Delete</a>
               <button class="edit-button" style="background-color: #05cfc5; color: #000; padding: 5px 10px; border: none; border-radius: 5px;">Rename</button>
             </div>
             <form class="edit-form" method="post" action="/cookbook/rename/<%=recipe.id %>" data-recipe="<%= JSON.stringify(recipe) %>">
