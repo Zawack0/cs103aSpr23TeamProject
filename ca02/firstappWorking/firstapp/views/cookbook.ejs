@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Cookbook</title>
+    <style>
+      h1 {
+        color: #05cfc5; 
+      }
+      body {
+        background-color: #1c1c1c; /* black */
+        color: #fff; /* white */
+
+      }
+      ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+      }
+      #my-list {
+        background-color: #1c1c1c;;
+        border-radius: 5px;
+        box-shadow: 2px 2px 5px #05cfc5;
+        margin-bottom: 10px;
+        padding: 10px;
+      }
+      button {
+        background-color: #05cfc5;
+        color: #f10404;
+        border: none;
+        border-radius: 3px;
+        padding: 5px 10px;
+        cursor: pointer;
+      }
+      input[type=text] {
+        padding: 5px;
+        border-radius: 3px;
+        border: none;
+        margin-right: 10px;
+      }
+      .edit-form {
+        display: none;
+        margin-top: 10px;
+      }
+      .edit-form.active {
+        display: block;
+      }
+
+
+      .favorite-star {
+
+        color:   #05cfc5;;
+        cursor: pointer;
+        }
+      .favorite-star.filled {
+        color: #f1c40f;
+        }
+      h3{
+        color:#05cfc5
+      }
+      li pre {
+    background-color: rgb(213, 238, 235);
+    color: black;
+    padding: 10px;
+  }
+    </style>
+  </head>
+  <body>
+    <h1>My Cookbook</h1>
+    <% if (recipes.length > 0) { %>
+      <ul id="my-list">
+        <% recipes.forEach(recipe => { %>
+          <li>
+            <div>
+              <h3>
+                <span class="favorite-star <%= recipe.Favorite ? 'filled' : '' %>" data-recipe-id="<%= recipe.id %>">&#9734;</span>
+                <%= recipe.Name %>
+              </h3>
+              <button class="edit-button" style="background-color: #05cfc5; color: #000; padding: 5px 10px; border: none; border-radius: 5px;">Rename</button>
+            </div>
+            <form class="edit-form" method="post" action="/cookbook/rename/<%=recipe.id %>" data-recipe="<%= JSON.stringify(recipe) %>">
+              <input type="text" name="name" value="<%= recipe.Name %>">
+              <button id="save-button" type="submit" style="background-color: #05cfc5; color: #000; padding: 5px 10px; border: none; border-radius: 5px;">Save</button>
+              <button type="button" class="cancel-button" style="background-color: #05cfc5; color: #000; padding: 5px 10px; border: none; border-radius: 5px;">Cancel</button>
+            </form>
+            <pre style="white-space: pre-wrap;"><%= recipe.Recipe %></pre>
+          </li>
+        <% }) %>
+      </ul>
+    <% } else { %>
+      <p>No recipes found.</p>
+    <% } %>
+    
+    <script>
+      const editButtons = document.querySelectorAll('.edit-button');
+      const editForms = document.querySelectorAll('.edit-form');
+      const cancelButtons = document.querySelectorAll('.cancel-button');
+      const favoriteStars = document.querySelectorAll('.favorite-star');
+      
+        favoriteStars.forEach((star) => {
+        star.addEventListener('click', (event) => {
+            const recipeId = star.getAttribute('data-recipe-id');
+            star.classList.toggle('filled');
+            const url = `/cookbook/makefav/${recipeId}`;
+            fetch(url, {
+                method: 'POST',
+                })
+                .then(response => {
+                    // handle the response from the server
+                })
+                .catch(error => {
+                    // handle any errors that occur during the request
+                });
+        });
+        });
+    
+
+    
+      editButtons.forEach((editButton, index) => {
+        editButton.addEventListener('click', () => {
+          editForms[index].classList.add('active');
+        });
+      });
+    
+      cancelButtons.forEach((cancelButton, index) => {
+        cancelButton.addEventListener('click', () => {
+          editForms[index].classList.remove('active');
+        });
+      });
+    </script>

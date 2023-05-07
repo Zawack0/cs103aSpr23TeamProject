@@ -6,12 +6,10 @@ const ObjectId = mongoose.Schema.Types.ObjectId;
 
 var recipeSchema = Schema( {
   userId: ObjectId,
-  description: String,
-  Type: String,
-  Flavor: String,
-  Restrictions: String,
-  Misc: String,
-  Recpie: String
+  Name: String,
+  Prompt: String,
+  Recipe: String,
+  Favorite: Boolean
 } );
 
 module.exports = mongoose.model( 'RecipeItem', recipeSchema );
