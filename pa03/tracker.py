@@ -118,12 +118,12 @@ def main():
             delete_name = get_text_arg("name of transaction to be deleted")
             transaction.delete_transaction(delete_name)
         elif choice == 7:
-            transaction.summarize(1)
+           print(transaction.summarize(1))
         elif choice == 8:
-            transaction.summarize(2)
+            print(transaction.summarize(2))
             # implement summarize transactions by month
         elif choice == 9:
-            transaction.summarize(3)
+            print(transaction.summarize(3))
             # implement summarize transactions by year
         elif choice == 10:
             print(transaction.summarize(4))

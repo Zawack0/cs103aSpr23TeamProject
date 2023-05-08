@@ -15,11 +15,13 @@ class transtests(unittest.TestCase):
                                'month':4, 'year':2022})
         result = t.countTransactions()
         assert result == 1        
+    
     '''Cole's work'''
     def test_add_category(self):
-        t = Transaction('test.db')
+        t = Transaction('test2.db')
         t.add_category('bees')
-        assert t.show_categories == "Categories:\nbees\n"
+        meep = t.show_categories()
+        assert meep == "Categories:\nbees\n"
         
 
     def test_delete_transaction(self):

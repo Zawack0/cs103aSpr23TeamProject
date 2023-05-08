@@ -150,3 +150,99 @@ transaction.py:109:4: W0105: String statement has no effect (pointless-string-st
 Your code has been rated at 7.47/10 (previous run: 5.33/10, +2.13)
 
 TO BE CONTINUED
+
+
+Cole's Logs 
+
+Transcript
+
+PS C:\Users\coles\OneDrive\Documents\GitHub\cs103aSpr23TeamProject\pa03> & C:/Users/coles/AppData/Local/Microsoft/WindowsApps/python3.11.exe c:/Users/coles/OneDrive/Documents/GitHub/cs103aSpr23TeamProject/pa03/tracker.py
+Enter database filename: skks
+0. quit
+1. show categories
+2. add category
+3. modify category
+4. show transactions
+5. add transaction
+6. delete transaction
+7. summarize transactions by date
+8. summarize transactions by month
+9. summarize transactions by year
+10. summarize transactions by category
+11. print this menu
+Enter your choice: 10
+
+Enter your choice: 5
+Enter new transaction num: 10
+Enter new transaction name: dkjdf
+Enter new transaction amount: 3
+Enter new transaction category: dogs
+Enter month: 2
+Enter day: 3
+Enter year: 494
+Enter new transaction description: dkjf
+Enter your choice: 5
+Enter new transaction num: 23
+Enter new transaction name: fjkjfd
+Enter new transaction amount: 33
+Enter new transaction category: cats 
+Enter month: 23
+Enter day: 4
+Enter year: 494
+Enter new transaction description: kdfjf
+Enter your choice: 5
+Enter new transaction num: 234
+Enter new transaction name: bee
+Enter new transaction amount: 43
+Enter new transaction category: dogs
+Enter month: 2
+Enter day: 494
+Enter year: 494
+Enter new transaction description: sdkjf
+Enter your choice: 10
+Category: cats, Total Amount: 33.0,                 Total Transactions: 1
+Category: dogs, Total Amount: 46.0,                 Total Transactions: 2
+
+Enter your choice: 9
+Year: 494, Total Amount: 79.0,                 Total Transactions: 3
+
+Enter your choice: 7
+Date: 2/3/494, Total Amount: 3.0,                 Total Transactions: 1
+Date: 2/494/494, Total Amount: 43.0,                 Total Transactions: 1
+Date: 23/4/494, Total Amount: 33.0,                 Total Transactions: 1
+
+PYLINT
+
+PS C:\Users\coles\OneDrive\Documents\GitHub\cs103aSpr23TeamProject\pa03> python3 -m pylint transaction.py
+************* Module transaction
+transaction.py:44:0: C0301: Line too long (102/100) (line-too-long)
+transaction.py:133:0: C0304: Final newline missing (missing-final-newline)
+transaction.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+transaction.py:5:0: C0115: Missing class docstring (missing-class-docstring)
+transaction.py:22:4: C0116: Missing function or method docstring (missing-function-docstring)
+transaction.py:31:4: C0116: Missing function or method docstring (missing-function-docstring)
+transaction.py:40:4: C0116: Missing function or method docstring (missing-function-docstring)
+transaction.py:46:4: C0116: Missing function or method docstring (missing-function-docstring)
+transaction.py:51:4: C0116: Missing function or method docstring (missing-function-docstring)
+transaction.py:51:4: R1710: Either all return statements in a function should return an expression, or none of them should. (inconsistent-return-statements)
+transaction.py:108:4: C0116: Missing function or method docstring (missing-function-docstring)
+transaction.py:124:4: C0116: Missing function or method docstring (missing-function-docstring)
+transaction.py:131:4: C0116: Missing function or method docstring (missing-function-docstring)
+transaction.py:131:4: C0103: Method name "countTransactions" doesn't conform to snake_case naming style (invalid-name)
+
+------------------------------------------------------------------
+Your code has been rated at 8.11/10 (previous run: 7.44/10, +0.67)
+
+PS C:\Users\coles\OneDrive\Documents\GitHub\cs103aSpr23TeamProject\pa03> python3 -m pylint tracker.py        
+
+------------------------------------
+Your code has been rated at 10.00/10
+
+PYTEST
+
+PS C:\Users\coles\OneDrive\Documents\GitHub\cs103aSpr23TeamProject\pa03> & C:/Users/coles/AppData/Local/Microsoft/WindowsApps/python3.11.exe c:/Users/coles/OneDrive/Documents/GitHub/cs103aSpr23TeamProject/pa03/test_transaction.py
+.....
+----------------------------------------------------------------------
+Ran 5 tests in 0.016s
+
+OK

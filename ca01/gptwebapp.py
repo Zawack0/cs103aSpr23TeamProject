@@ -38,7 +38,7 @@ def index():
         <a href="{url_for('team')}">About the team</a><br>
         <a href="{url_for('connor')}">Connor's GPT prompt: Make a recipe to fit your needs</a><br>
         <a href="{url_for('sam')}">Sam's GPT prompt: Get a recipe that uses the ingredients you have</a><br>
-        <a href="{url_for('cole')}">Cole's GPT prompt: Create a recipe for a dish based off of your favorite foods</a>
+        <a href="{url_for('cole')}">Cole's GPT prompt: Create a recipe for a dish based off of your favorite foods</a><br>
         <a href="{url_for('disclaimer')}">Disclaimer</a><br>
     '''
 
@@ -58,7 +58,7 @@ def cole():
         <div style="border:thin solid black">{answer}</div>
         Here is the answer in "pre" mode:
         <pre style="border:thin solid black">{answer}</pre>
-        <a href={url_for('connor')}> Make another recipe?</a>
+        <a href={url_for('cole')}> Make another recipe?</a>
         <p> </p>
         <a href={url_for('index')}> Go back home</a>
         '''
@@ -145,7 +145,8 @@ def team():
     return '''Team Members:\n<p>Sam Herman: Freshman at Brandeis University studying computer science, mathematics, applied math, and Japanese language.
     Created personal Prompt engineering page, about page, and team page.</p>\n
     <p>Connor Zawacki: Junior at Brandeis University studying computer science and neuroscience. Created personal prompt engineering page, index page and disclaimer, modified about and team pages</p>\n
-    <p>Cole Simmons: Freshman at Brandeis University studying computer science and anthropology. Created personal promt engineering page, corrected text, and modified index and team page\nDaniel Olevsky'''
+    <p>Cole Simmons: Freshman at Brandeis University studying computer science and anthropology. Created personal promt engineering page, corrected text, and modified index and team page</p>\n
+    <p>Daniel Olevsky</p>'''
 
 @app.route('/disclaimer', methods=['GET'])
 def disclaimer():
